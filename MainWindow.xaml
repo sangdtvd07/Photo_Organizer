@@ -16,7 +16,7 @@
                     x:Name="App_Name"
                     Margin="10,0,0,0"
                     Orientation="Horizontal">
-            <Image Source="/Assets/icons8-cash-in-hand-48.png" Margin="0,5,0,0"/>
+            <Image Source="/Assets/App_Icon.png" Margin="0,5,0,0"/>
             <TextBlock Margin="10,0,0,0"
                        VerticalAlignment="Center"
                        Height="Auto"
