@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "App_Demo_1 (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "App_Demo_1 (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
