@@ -1,25 +1,13 @@
 ﻿using App_Demo_1.ViewModels;
 using CommunityToolkit.Mvvm.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
+using ScottPlot;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.Storage;
 using Windows.Storage.Pickers;
-
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
@@ -35,8 +23,7 @@ namespace App_Demo_1
             this.InitializeComponent();
             ExtendsContentIntoTitleBar = true;
             SetTitleBar(App_Name);
-
-             mainViewModel = Ioc.Default.GetService<MainViewModel>();
+            mainViewModel = Ioc.Default.GetService<MainViewModel>();
         }
 
         public MainViewModel mainViewModel { get; } // Cho phép truy cập tới MainViewModel mà không thay đổi giá trị trong nó
@@ -66,7 +53,7 @@ namespace App_Demo_1
                 mainViewModel?.UpdateInputFolderPathCommand.Execute(SelectedInputFolder.Path);
                 mainViewModel?.UpdateOutputFolderPathCommand.Execute(SelectedOutputFolder.Path);
                 //Load Photo List
-                mainViewModel.LoadPhotoCommand?.ExecuteAsync(SelectedInputFolder?.Path);
+                mainViewModel.LoadPhotoCommand?.ExecuteAsync(SelectedInputFolder?.Path);     
             }
         }
         private async void input_button_clicked(Object sender, RoutedEventArgs e)
@@ -120,6 +107,11 @@ namespace App_Demo_1
             }
             else format = @"\\yyyy\\MM\\dd";
             return format;
+        }
+
+        private void PhotoList_ElementPrepared(ItemsRepeater sender, ItemsRepeaterElementPreparedEventArgs args)
+        {
+            mainViewModel?.PreparePhotoCommand?.ExecuteAsync(args.Index);
         }
     }
 }

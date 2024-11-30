@@ -1,4 +1,6 @@
-﻿using App_Demo_1.ViewModels;
+﻿using App_Demo_1.Interfaces;
+using App_Demo_1.Services;
+using App_Demo_1.ViewModels;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
@@ -38,6 +40,8 @@ namespace App_Demo_1
             this.InitializeComponent();
 
             Ioc.Default.ConfigureServices(new ServiceCollection()
+                .AddMemoryCache()
+                .AddSingleton<IThumbnailService, ThumbnailService>()
                 .AddSingleton<MainViewModel>()
                 .BuildServiceProvider());
         }

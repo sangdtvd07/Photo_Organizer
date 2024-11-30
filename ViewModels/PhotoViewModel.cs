@@ -1,7 +1,10 @@
 ﻿
+using App_Demo_1.Interfaces;
+using App_Demo_1.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.UI.Xaml.Media.Imaging;
 using System;
+using System.Threading.Tasks;
 using Windows.Storage;
 
 namespace App_Demo_1.ViewModels
@@ -10,6 +13,7 @@ namespace App_Demo_1.ViewModels
     public partial class PhotoViewModel
     {
         private readonly StorageFile _file;
+        private readonly IThumbnailService _thumbnailService;
         [ObservableProperty]
         private string? _inputFileName;
         [ObservableProperty]
@@ -23,11 +27,21 @@ namespace App_Demo_1.ViewModels
         [ObservableProperty]
         private BitmapImage _thumbnail; //Tải, giải mã và hiện thị hình ảnh
 
-        public PhotoViewModel(StorageFile file)
+        public PhotoViewModel(StorageFile file, IThumbnailService thumbnailService)
         {
             _file = file;
             InputFileName = _file.Name;
             InputFilePath = _file.Path.ToString();
+            _thumbnailService = thumbnailService;
+        }
+
+        public async Task LoadThumbnailAsync()
+        {
+            if (Thumbnail == null) 
+            {
+                Thumbnail = await _thumbnailService.GetThumbnail(_file);
+            }
+
         }
     }
 }

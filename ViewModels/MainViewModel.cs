@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using App_Demo_1.Interfaces;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
@@ -24,11 +25,18 @@ public partial class MainViewModel
     private StorageFolder? _outputFolder;
     [ObservableProperty]
     private ObservableCollection<PhotoViewModel> _photos = new();
-    public MainViewModel() 
-    { 
+    private readonly IThumbnailService _thumbnailService;
 
+    public MainViewModel(IThumbnailService thumbnailService) 
+    {
+        _thumbnailService = thumbnailService;
     }
-
+    [RelayCommand]
+    private Task PreparePhotoAsync(int photoIndex)
+    {
+        PhotoViewModel photoViewModel = Photos[photoIndex];
+        return photoViewModel.LoadThumbnailAsync();
+    }
     [RelayCommand]
     private async Task UpdateInputFolderPath(string? folderPath) //Hàm không đồng bộ mang mục đích là cập nhập đường dẫn cho InputFolder
     {
@@ -64,7 +72,7 @@ public partial class MainViewModel
         
         foreach(StorageFile file in files) //Duyệt danh sách kết quả truy vấn file
         {
-            PhotoViewModel photoViewModel = new(file); //Mỗi item tạo 1 biến lưu trữ dữ liệu và add vào list
+            PhotoViewModel photoViewModel = new(file, _thumbnailService); //Mỗi item tạo 1 biến lưu trữ dữ liệu và add vào list
             photoViewModels.Add(photoViewModel);
         }
         

@@ -7,6 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:viewmodels="using:App_Demo_1.ViewModels"
+    xmlns:ScottPlot="using:ScottPlot.WinUI"
     mc:Ignorable="d">
 
 
@@ -105,40 +106,6 @@
         <!--#Region End Settings Diaglog-->
 
         <!--#region Item Views-->
-        <!--<Grid Grid.Row="2"
-              Margin="10"
-              ColumnDefinitions ="*,5,*">
-            <Grid Grid.Column="0"
-                  BorderBrush="Gray" 
-                  BorderThickness="1">
-                <Grid Grid.Row="0"
-                      Margin="10"
-                      BorderBrush="Black"
-                      BorderThickness="1"
-                      Height="Auto">
-                <TextBlock Text="Input"
-                           VerticalAlignment="Center" 
-                           HorizontalAlignment="Center"
-                           FontWeight="Bold"
-                           FontSize="15"  
-                           TextWrapping="WrapWholeWords"/>
-                </Grid>
-                <Grid Grid.Row="1" 
-                      Height="*">
-                    <ScrollViewer BorderBrush="DimGray" BorderThickness="1">
-                        <ItemsRepeater x:Name="PhotoList"
-                                       ItemsSource="{x:Bind mainViewModel.Photos, Mode=OneWay}">
-                            
-                        </ItemsRepeater>
-                    </ScrollViewer>
-                </Grid>
-            </Grid>
-
-            <Grid Grid.Column="2" 
-                  BorderBrush="Gray" 
-                  BorderThickness="1">
-            </Grid>
-        </Grid>-->
         <Grid Grid.Row="2"
               Margin="10">
             <Grid.ColumnDefinitions>
@@ -164,6 +131,7 @@
                 <Grid Grid.Row="1">
                     <ScrollViewer BorderBrush="DimGray" BorderThickness="1">
                         <ItemsRepeater x:Name="PhotoList"
+                                       ElementPrepared="PhotoList_ElementPrepared"
                                        ItemsSource="{x:Bind mainViewModel.Photos, Mode = OneWay}">
                             <ItemsRepeater.Layout>
                                 <StackLayout Orientation="Vertical"/>
@@ -171,13 +139,14 @@
                             <DataTemplate x:DataType="viewmodels:PhotoViewModel">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="150"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <Grid Grid.Column="0">
                                         <Image Source="{x:Bind InputFilePath, Mode=OneWay}"
                                                Stretch="Uniform"
-                                               Height="100"/>
+                                               Height="100"
+                                               />
                                     </Grid>
                                     <StackPanel Grid.Column="1"
                                                 Padding="10,0,0,0"
