@@ -29,10 +29,14 @@ namespace App_Demo_1.ViewModels
 
         public PhotoViewModel(StorageFile file, IThumbnailService thumbnailService)
         {
+            
             _file = file;
             InputFileName = _file.Name;
             InputFilePath = _file.Path.ToString();
+            DateTaken = _file.DateCreated.DateTime;
+            
             _thumbnailService = thumbnailService;
+            
         }
 
         public async Task LoadThumbnailAsync()
