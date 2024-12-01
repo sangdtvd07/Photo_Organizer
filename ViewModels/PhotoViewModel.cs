@@ -7,6 +7,8 @@ using System;
 using System.Threading.Tasks;
 using Windows.Storage;
 
+#nullable enable
+
 namespace App_Demo_1.ViewModels
 {
     [ObservableObject]

@@ -12,7 +12,7 @@ using Windows.Storage;
 using Windows.Storage.Search;
 
 
-
+#nullable enable
 
 namespace App_Demo_1.ViewModels;
 

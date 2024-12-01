@@ -10,7 +10,7 @@ using Windows.Storage;
 using Windows.Storage.Pickers;
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
-
+#nullable enable
 namespace App_Demo_1
 {
     /// <summary>
@@ -49,9 +49,9 @@ namespace App_Demo_1
             if (results is ContentDialogResult.Primary)
             {
                 //ViewModel.InputFolder = SelectedInputFolder;
-                //ViewModel.OutputFolder = SelectedOutputFolder;  
-                mainViewModel?.UpdateInputFolderPathCommand.Execute(SelectedInputFolder.Path);
-                mainViewModel?.UpdateOutputFolderPathCommand.Execute(SelectedOutputFolder.Path);
+                //ViewModel.OutputFolder = SelectedOutputFolder;
+                mainViewModel.UpdateInputFolderPathCommand.Execute(SelectedInputFolder?.Path);
+                mainViewModel.UpdateOutputFolderPathCommand.Execute(SelectedOutputFolder?.Path);
                 //Load Photo List
                 mainViewModel.LoadPhotoCommand?.ExecuteAsync(SelectedInputFolder?.Path);     
             }

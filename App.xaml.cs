@@ -23,6 +23,7 @@ using Windows.Foundation.Collections;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
+#nullable enable
 
 namespace App_Demo_1
 {
@@ -31,6 +32,7 @@ namespace App_Demo_1
     /// </summary>
     public partial class App : Application
     {
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -44,6 +46,8 @@ namespace App_Demo_1
                 .AddSingleton<IThumbnailService, ThumbnailService>()
                 .AddSingleton<MainViewModel>()
                 .BuildServiceProvider());
+
+
         }
 
         /// <summary>

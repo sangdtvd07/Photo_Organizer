@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
-
+#nullable enable
 namespace App_Demo_1.Services
 {
     public class ThumbnailService : IThumbnailService
