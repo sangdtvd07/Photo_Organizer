@@ -26,9 +26,6 @@
     <None Remove="Assets\App_Icon.png.scale-200.png" />
     <None Remove="Assets\App_Icon.png.scale-400.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_Icon.scale-100.png" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0-preview3" />
