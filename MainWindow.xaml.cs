@@ -105,7 +105,7 @@ namespace App_Demo_1
             {
                 format += @"\\dd";
             }
-            else format = @"\\yyyy\\MM\\dd";
+            else format = @"\\yyyy-MM-dd";
             return format;
         }
 

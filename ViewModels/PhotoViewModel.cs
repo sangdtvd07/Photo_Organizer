@@ -16,6 +16,7 @@ namespace App_Demo_1.ViewModels
     {
         private readonly StorageFile _file;
         private readonly IThumbnailService _thumbnailService;
+        private readonly IMetadataService _metadataService;
         [ObservableProperty]
         private string? _inputFileName;
         [ObservableProperty]
@@ -29,16 +30,16 @@ namespace App_Demo_1.ViewModels
         [ObservableProperty]
         private BitmapImage _thumbnail; //Tải, giải mã và hiện thị hình ảnh
 
-        public PhotoViewModel(StorageFile file, IThumbnailService thumbnailService)
+        public PhotoViewModel(StorageFile file, IThumbnailService thumbnailService, IMetadataService metadataService)
         {
             
             _file = file;
             InputFileName = _file.Name;
             InputFilePath = _file.Path.ToString();
-            DateTaken = _file.DateCreated.DateTime;
-            
+
             _thumbnailService = thumbnailService;
             
+
         }
 
         public async Task LoadThumbnailAsync()
@@ -49,5 +50,7 @@ namespace App_Demo_1.ViewModels
             }
 
         }
+
+
     }
 }

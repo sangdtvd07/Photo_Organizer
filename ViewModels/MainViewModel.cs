@@ -26,7 +26,7 @@ public partial class MainViewModel
     [ObservableProperty]
     private ObservableCollection<PhotoViewModel> _photos = new();
     private readonly IThumbnailService _thumbnailService;
-
+    private readonly IMetadataService _metadataService;
     public MainViewModel(IThumbnailService thumbnailService) 
     {
         _thumbnailService = thumbnailService;
@@ -63,6 +63,7 @@ public partial class MainViewModel
         List<string> filesTypeFilter = new List<string>();    //Tạo 1 list các filter file có trong folder
         filesTypeFilter.Add(".jpng");
         filesTypeFilter.Add(".jpg");
+        filesTypeFilter.Add(".jfif");
         QueryOptions queryOptions = new QueryOptions(CommonFileQuery.DefaultQuery, filesTypeFilter); //Tạo 1 truy vấn 
         queryOptions.FolderDepth = FolderDepth.Deep; //Truy vấn đến cả folder con
         StorageFileQueryResult queryResult = folder.CreateFileQueryWithOptions(queryOptions);
@@ -72,12 +73,12 @@ public partial class MainViewModel
         
         foreach(StorageFile file in files) //Duyệt danh sách kết quả truy vấn file
         {
-            PhotoViewModel photoViewModel = new(file, _thumbnailService); //Mỗi item tạo 1 biến lưu trữ dữ liệu và add vào list
+            PhotoViewModel photoViewModel = new(file, _thumbnailService, _metadataService); //Mỗi item tạo 1 biến lưu trữ dữ liệu và add vào list
             photoViewModels.Add(photoViewModel);
         }
         
         Photos = new ObservableCollection<PhotoViewModel>(photoViewModels);
 
-    }
+    } //Lay danh sach cac anh trong folder
 }
 

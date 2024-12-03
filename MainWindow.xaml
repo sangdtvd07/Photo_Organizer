@@ -99,7 +99,7 @@
                         </CheckBox>
                     </StackPanel>
                     <TextBlock Grid.Row="2">Output Example</TextBlock>
-                    <TextBlock Grid.Row="3" x:Name="Example_TextBlock" TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Grid.Row="3" x:Name="Example_TextBlock" TextWrapping="Wrap" VerticalAlignment="Center">Output</TextBlock>
                 </Grid>
             </StackPanel>
         </ContentDialog>

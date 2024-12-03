@@ -44,6 +44,7 @@ namespace App_Demo_1
             Ioc.Default.ConfigureServices(new ServiceCollection()
                 .AddMemoryCache()
                 .AddSingleton<IThumbnailService, ThumbnailService>()
+                .AddSingleton<IMetadataService, MetadataService>()
                 .AddSingleton<MainViewModel>()
                 .BuildServiceProvider());
 
